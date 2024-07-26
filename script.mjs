@@ -1,32 +1,33 @@
 class Node {
-    constructor (value=null, nextNode=null) {
+    constructor (value=null, key=null, nextNode=null) {
         this.value = value;
+        this.key = key;
         this.next = nextNode;
     }
 }
 
 
 
-class LinkedList {
+export class LinkedList {
     constructor () {
         this.start = null;
     }
 
-    append(value) {
+    append(value, key=null) {
         if (!this.start) {
-            this.start = new Node(value);
+            this.start = new Node(value, key);
 
         }   else {
             let current = this.start;
             while (current.next) {
                 current = current.next;
             }
-            current.next = new Node(value);
+            current.next = new Node(value, key);
         }
     }
 
-    prepend(value) {
-        let newNode = new Node(value);
+    prepend(value, key=null) {
+        let newNode = new Node(value, key);
         newNode.next = this.start;
         this.start = newNode;
 
@@ -197,9 +198,10 @@ list.append("dog");
 list.append("cat");
 list.append("parrot");
 list.append("hamster");
-list.append("snake");
+
 list.append("turtle");
 list.removeAt(4);
-list.insertAt("hi", 5);
+list.insertAt("hi", 4);
 
-console.log(list.toString());
+
+console.log(list.head());
